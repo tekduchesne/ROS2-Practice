@@ -27,12 +27,12 @@ class TurtleControllerNode(Node):
 
         if pose.x > 5.5 and self.previous_x_ <= 5.5:
             self.previous_x_ = pose.x
-            self.get_logger().info("Set color to red!")
-            self.call_set_pen_service(r = 255, g = 0, b = 0, width = 3, off = 0)
-        elif pose.x <= 5.5 and self.previous_x_ > 5.5:
-            self.previous_x_ = pose.x
             self.get_logger().info("Set color to green!")
             self.call_set_pen_service(r = 0, g = 255, b = 0, width = 3, off = 0)
+        elif pose.x <= 5.5 and self.previous_x_ > 5.5:
+            self.previous_x_ = pose.x
+            self.get_logger().info("Set color to blue!")
+            self.call_set_pen_service(r = 0, g = 0, b = 255, width = 3, off = 0)
 
     def call_set_pen_service(self, r, g, b, width, off):
         client = self.create_client(SetPen, "/turtle1/set_pen")
